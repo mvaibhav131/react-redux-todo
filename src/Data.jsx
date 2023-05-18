@@ -1,0 +1,27 @@
+ export const userList =[
+    {
+        name:"vaibhav",
+        email:"vm@gmail.com",
+        id:1
+    },
+    {
+        name:"rahul",
+        email:"rm@gmail.com",
+        id:2
+    },
+    {
+        name:"keshav",
+        email:"km@gmail.com",
+        id:3
+    },
+    {
+        name:"steven",
+        email:"sm@gmail.com",
+        id:4
+    },
+    {
+        name:"marvel",
+        email:"mm@gmail.com",
+        id:5
+    }
+ ]
