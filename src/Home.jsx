@@ -1,44 +1,60 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { deleteUser } from './useReducer'
+import { Box, FormControl, FormLabel, Input,Button, Center, Heading } from '@chakra-ui/react';
+import React, { useState } from 'react'
 
 const Home = () => {
-    const users=useSelector((state)=>state.users)
-    // console.log(users)
-    const dispatch=useDispatch();
-    const handleDelete=(id)=>{
-          dispatch(deleteUser({id:id}))
-    }
-  return (
-    <div className='container'>
-        <h2>CRUD App with JSON-Server</h2>
-        <Link to="/create" className='btn btn-success my-3'>Create +</Link>
-        <table className="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {users.map((e,i)=>(
-                    <tr key={i}>
-                      <td>{e.id}</td>
-                      <td>{e.name}</td>
-                      <td>{e.email}</td>
-                      <td>
-                        <Link to={`/edit/${e.id}`} className='btn btn-sm btn-primary'>Edit</Link>
-                        <button onClick={()=>handleDelete(e.id)} className='btn btn-sm btn-danger ms-2'>Delete</button>
+  const [value1,setValue1]=useState('');
+  const [value2,setValue2]=useState('');
+  const [sum,setSum]=useState('');
 
-                      </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
+  const value1Change=(e)=>{
+    setValue1(e.target.value);
+  }
+
+  const value2Change=(e)=>{
+    setValue2(e.target.value);
+  }
+  const formsSubmit=(e)=>{
+    e.preventDefault();
+    const Number1=parseFloat(value1);
+    const Number2=parseFloat(value2);
+    setSum(Number1+Number2);
+  }
+  
+  return (
+    <>
+  <Heading as='h1' size='2xl' color={'green'} textAlign={'center'} ml={-7} noOfLines={1}>
+    Sum Calculator
+  </Heading>
+  <Center>
+  <Box w="35%" h="500px" fontSize={25} fontWeight="extrabold" color='blue' p={9} border={'2px solid black'}  >
+  <FormControl isRequired m={3}>
+  <FormLabel>First Value</FormLabel>
+  <Input type="number" value={value1} onChange={value1Change} placeholder='Enter First Value' />
+  <FormLabel>Second Value</FormLabel>
+  <Input type="number" value={value2} onChange={value2Change} placeholder='Enter Second Value' />
+  <Box m={6}>
+  <Button w={300} m={3} p={7} colorScheme='blue' onClick={formsSubmit} >Calculate Sum</Button>
+  </Box>
+  <Box>Sum Is : {sum}</Box>
+  </FormControl>
+
+
+      {/* <form action="" onSubmit={formSubmit}>
+        <label htmlFor="value1">Value1 : 
+        <input type="number" value={value1} onChange={value1Change} placeholder='Enter Value1'/>
+        </label>
+        <br />
+        <label htmlFor="value2">Value2 : 
+        <input type="number" value={value2} onChange={value2Change} placeholder='Enter Value2' />
+        </label>
+        <br />
+        <button type='submit'>Calculate Sum</button>
+        <br />
+        <div><span>Sum Is : {sum}</span></div>
+      </form> */}
+    </Box>
+    </Center>
+    </>
   )
 }
 
