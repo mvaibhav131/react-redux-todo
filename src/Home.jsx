@@ -37,8 +37,6 @@ const Home = () => {
   </Box>
   <Box>Sum Is : {sum}</Box>
   </FormControl>
-
-
       {/* <form action="" onSubmit={formSubmit}>
         <label htmlFor="value1">Value1 : 
         <input type="number" value={value1} onChange={value1Change} placeholder='Enter Value1'/>
